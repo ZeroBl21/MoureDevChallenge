@@ -1,13 +1,12 @@
 /*
- * Reto #2
- * LA SUCESIÓN DE FIBONACCI
- * Fecha publicación enunciado: 10/01/22
- * Fecha publicación resolución: 17/01/22
- * Dificultad: DIFÍCIL
+ * Reto #3
+ * ¿ES UN NÚMERO PRIMO?
+ * Fecha publicación enunciado: 17/01/22
+ * Fecha publicación resolución: 24/01/22
+ * Dificultad: MEDIA
  *
- * Enunciado: Escribe un programa que imprima los 50 primeros números de la sucesión de Fibonacci empezando en 0.
- * La serie Fibonacci se compone por una sucesión de números en la que el siguiente siempre es la suma de los dos anteriores.
- * 0, 1, 1, 2, 3, 5, 8, 13...
+ * Enunciado: Escribe un programa que se encargue de comprobar si un número es o no primo.
+ * Hecho esto, imprime los números primos entre 1 y 100.
  *
  * Información adicional:
  * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
@@ -17,27 +16,27 @@
  *
  */
 
-const fibonacci = (n) => {
-  let fib = [0, 1];
+const isPrime = (number) => {
+  if (number < 2) return false;
 
-  for (let i = 2; i <= n; i++) {
-    fib.push(fib[i - 1] + fib[i - 2]);
+  for (let i = 2; i < number; i++) {
+    if (number % i === 0) {
+      return false
+    }
   }
 
-  return fib;
-
-  //If you want only the last
-  //
-  //return fib[n];
-  //return fib.pop() <---- You can use pop too.
+  return true
 };
 
-console.log(fibonacci(50)); // <----- The user insert the limit
+const primeNumbers = () => {
 
-// The Binet's formula is the fastest for the this
-// It isn't mine
-//
-// var fib = function(n) {
-//     let sqrt5 = Math.sqrt(5)
-//     return (Math.pow(1 + sqrt5, n) - Math.pow(1 - sqrt5, n)) / Math.pow(2, n) / sqrt5
-// };
+  for (let i = 1; i < 100; i++) {
+    if (isPrime(i)) console.log(i);
+  }
+
+};
+
+primeNumbers();
+
+// I REALLY HATE THIS CHALLENGE
+
