@@ -1,85 +1,43 @@
 /*
- * Reto #1
- * ¿ES UN ANAGRAMA?
- * Fecha publicación enunciado: 03/01/22
- * Fecha publicación resolución: 10/01/22
- * Dificultad: MEDIA
+ * Reto #2
+ * LA SUCESIÓN DE FIBONACCI
+ * Fecha publicación enunciado: 10/01/22
+ * Fecha publicación resolución: 17/01/22
+ * Dificultad: DIFÍCIL
  *
- * Enunciado: Escribe una función que reciba dos palabras (String) y retorne verdadero o falso (Bool) según sean o no anagramas.
- * Un Anagrama consiste en formar una palabra reordenando TODAS las letras de otra palabra inicial.
- * NO hace falta comprobar que ambas palabras existan.
- * Dos palabras exactamente iguales no son anagrama.
+ * Enunciado: Escribe un programa que imprima los 50 primeros números de la sucesión de Fibonacci empezando en 0.
+ * La serie Fibonacci se compone por una sucesión de números en la que el siguiente siempre es la suma de los dos anteriores.
+ * 0, 1, 1, 2, 3, 5, 8, 13...
  *
  * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🗓reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
+ * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
 
-// First Version
+const fibonacci = (n) => {
+  let fib = [0, 1];
 
-// function shallowEqual(object1, object2) {
-//   const keys1 = Object.keys(object1);
-//   const keys2 = Object.keys(object2);
-//   if (keys1.length !== keys2.length) {
-//     return false;
-//   }
-//   for (let key of keys1) {
-//     if (object1[key] !== object2[key]) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
-
-// const isAnagram = (wordOne, wordTwo) => {
-// 	if (wordOne.lenght !== wordTwo.lenght) return false;
-
-// 	let obj = {};
-// 	let obj2 = {};
-
-// 	for (let i of wordOne.toLowerCase()) {
-// 		obj[i] = isNaN(obj[i]) ? 1 : obj[i] + 1;
-// 	}
-
-// 	for (let i of wordTwo.toLowerCase()) {
-// 		obj2[i] = isNaN(obj2[i]) ? 1 : obj2[i] + 1;
-// 	}
-
-// 	return shallowEqual(obj, obj2)
-// };
-
-// console.log(isAnagram("hello", "olleH"));
-
-// Final Version
-
-const isAnagram = (wordOne, wordTwo) => {
-  if (wordOne.length !== wordTwo.length) return false;
-
-  let obj = {};
-
-  for (let i of wordOne.toLowerCase()) {
-    obj[i] = isNaN(obj[i]) ? 1 : obj[i] + 1;
+  for (let i = 2; i <= n; i++) {
+    fib.push(fib[i - 1] + fib[i - 2]);
   }
 
-  for (let char of wordTwo.toLowerCase()) {
-    if (!obj[char]) return false;
-    obj[char]--;
-    if (obj[char] === 0) delete obj[char];
-  }
+  return fib;
 
-  return [...Object.keys(obj)].length === 0;
+  //If you want only the last
+  //
+  //return fib[n];
+  //return fib.pop() <---- You can use pop too.
 };
 
-console.log(isAnagram("hello", "olleH"));
+console.log(fibonacci(50)); // <----- The user insert the limit
 
-//Ideal Version (It isn't mine)
-//Author: https://leetcode.com/problems/valid-anagram/discuss/66527/A-few-JavaScript-solutions
-
-// var isAnagram = function(s, t) {
-// 	return s.toLowerCase().split('').sort().join('') === t.toLowerCase().split('').sort().join('');
+// The Binet's formula is the fastest for the this
+// It isn't mine
+//
+// var fib = function(n) {
+//     let sqrt5 = Math.sqrt(5)
+//     return (Math.pow(1 + sqrt5, n) - Math.pow(1 - sqrt5, n)) / Math.pow(2, n) / sqrt5
 // };
-
-// console.log(isAnagram("hello", "olleH"));
