@@ -21,22 +21,19 @@ const isPrime = (number) => {
 
   for (let i = 2; i < number; i++) {
     if (number % i === 0) {
-      return false
+      return false;
     }
   }
 
-  return true
+  return true;
 };
 
 const primeNumbers = () => {
-
   for (let i = 1; i < 100; i++) {
     if (isPrime(i)) console.log(i);
   }
-
 };
 
 primeNumbers();
 
 // I REALLY HATE THIS CHALLENGE
-
